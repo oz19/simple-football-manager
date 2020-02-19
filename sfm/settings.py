@@ -37,9 +37,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+
+    # Third party
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 
     # Local
     'users.apps.UsersConfig',
+    'game.apps.GameConfig',
 
 ]
 
@@ -58,7 +65,9 @@ ROOT_URLCONF = 'sfm.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -130,4 +139,18 @@ STATIC_URL = '/static/'
 
 # Custom user
 AUTH_USER_MODEL = 'users.CustomUser'
+
+# Allauth
+LOGIN_REDIRECT_URL      = 'home'
+ACCOUNT_LOGOUT_REDIRECT = 'home'
+
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = {
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+}
+
+# Email
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 

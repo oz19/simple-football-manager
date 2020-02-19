@@ -8,6 +8,7 @@ verify_ssl = true
 [packages]
 django = "==2.2.10"
 psycopg2-binary = "==2.8.4"
+django-allauth = "==0.41.0"
 
 [requires]
 python_version = "3.6"
