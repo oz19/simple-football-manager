@@ -7,6 +7,72 @@ from django.db import models
 from users.models import CustomUser
 
 
+class Budget(models.Model):
+    season_budget       = models.IntegerField(
+        default     = 0,
+        validators  = [
+            MinValueValidator(0),
+            MaxValueValidator(1000000000)
+        ]
+    )
+    cash                = models.IntegerField(
+        default     = 0,
+        validators  = [
+            MinValueValidator(0),
+            MaxValueValidator(1000000000)
+        ]
+    )
+    players             = models.IntegerField(
+        default     = 0,
+        validators  = [
+            MinValueValidator(0),
+            MaxValueValidator(1000000000)
+        ]
+    )
+    staff               = models.IntegerField(
+        default     = 0,
+        validators  = [
+            MinValueValidator(0),
+            MaxValueValidator(1000000000)
+        ]
+    )
+    bonus               = models.IntegerField(
+        default     = 0,
+        validators  = [
+            MinValueValidator(0),
+            MaxValueValidator(1000000000)
+        ]
+    )
+    marketing           = models.IntegerField(
+        default     = 0,
+        validators  = [
+            MinValueValidator(0),
+            MaxValueValidator(1000000000)
+        ]
+    )
+    team_building       = models.IntegerField(
+        default     = 0,
+        validators  = [
+            MinValueValidator(0),
+            MaxValueValidator(1000000000)
+        ]
+    )
+    education           = models.IntegerField(
+        default     = 0,
+        validators  = [
+            MinValueValidator(0),
+            MaxValueValidator(1000000000)
+        ]
+    )
+    facilities          = models.IntegerField(
+        default     = 0,
+        validators  = [
+            MinValueValidator(0),
+            MaxValueValidator(1000000000)
+        ]
+    )
+
+
 class Challenge(models.Model):
     # Season stages
     PRE_SEASON      = 'PRE'
@@ -26,7 +92,8 @@ class Challenge(models.Model):
     )
 
     # Fields
-    user                = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    user                = models.OneToOneField(CustomUser, on_delete=models.CASCADE, null=True)
+    budget              = models.OneToOneField(Budget, on_delete=models.CASCADE, null=True)
     target              = models.IntegerField(
         default     = 10,
         validators  = [
