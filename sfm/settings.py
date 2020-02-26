@@ -140,9 +140,20 @@ STATIC_URL = '/static/'
 # Custom user
 AUTH_USER_MODEL = 'users.CustomUser'
 
-# Allauth
-LOGIN_REDIRECT_URL      = 'home'
-ACCOUNT_LOGOUT_REDIRECT = 'home'
+# Allauth (settings from https://django-allauth.readthedocs.io/en/latest/configuration.html)
+LOGIN_REDIRECT_URL                      = 'home'
+ACCOUNT_LOGOUT_REDIRECT_URL             = 'home'
+ACCOUNT_AUTHENTICATION_METHOD           = 'email'
+ACCOUNT_EMAIL_REQUIRED                  = True
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS  = 14
+ACCOUNT_EMAIL_VERIFICATION              = 'mandatory'   # Login disallowed before email verification
+ACCOUNT_EMAIL_SUBJECT_PREFIX            = '[SFM] '
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT            = 4
+ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT          = 600
+ACCOUNT_PRESERVE_USERNAME_CASING        = False
+ACCOUNT_SESSION_REMEMBER                = True
+ACCOUNT_USERNAME_REQUIRED               = False
+
 
 SITE_ID = 1
 
