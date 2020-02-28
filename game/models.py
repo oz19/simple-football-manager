@@ -75,12 +75,12 @@ class Budget(models.Model):
 
 class Challenge(models.Model):
     # Season stages
-    PRE_SEASON      = 'PRE'
-    FIRST_GAMES     = 'INI'
-    CHRISTMAS       = 'XMS'
-    CENTRAL_GAMES   = 'CEN'
-    LAST_GAMES      = 'LST'
-    POST_SEASON     = 'POS'
+    PRE_SEASON      = 0
+    FIRST_GAMES     = 1
+    CHRISTMAS       = 2
+    CENTRAL_GAMES   = 3
+    LAST_GAMES      = 4
+    POST_SEASON     = 5
 
     SEASON_STAGE_CHOICES = (
         (PRE_SEASON     , 'Pre-season'),
@@ -122,9 +122,12 @@ class Challenge(models.Model):
             MaxValueValidator(10)
         ]
     )
-    stage               = models.CharField(
-        max_length  = 3,
+    stage               = models.IntegerField(
         choices     = SEASON_STAGE_CHOICES,
-        default     = PRE_SEASON
+        default     = PRE_SEASON,
+        validators  = [
+            MinValueValidator(0),
+            MaxValueValidator(5)
+        ]
     )
 
