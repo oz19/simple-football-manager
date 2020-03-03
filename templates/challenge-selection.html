@@ -1,0 +1,52 @@
+{% extends '_base.html' %}
+
+
+
+{% block content %}
+<div class='container'>
+
+    <div class='row mt-5'>
+        <div class='col text-center'>
+            <h1>Simple Football Manager</h1>
+            <p>{{ user.email }}</p>
+            <p>Reputation: {{ user.reputation }}</p>
+        </div>
+    </div>
+
+
+    <div class='row mt-5'>
+        <div class='col'>
+
+            <h3 class='mt-2'>Challenge selection</h3>
+
+            <ul class="nav nav-tabs mt-4" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active text-dark" id="challenge-tab" data-toggle="tab" href="#challenge" role="tab" aria-controls="challenge" aria-selected="true">1. Select challenge</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <!-- Select Challenge -->
+                Select challenge template
+<!--
+                <div class="tab-pane fade show active" id="challenge" role="tabpanel" aria-labelledby="challenge-tab">
+                    <ul>
+
+                        {% for challenge in challenge_offers %}
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                                <label class="form-check-label" for="exampleRadios2">
+                                    Option {{ forloop.counter }}:
+                                        {{ challenge.budget.season_budget }} €.
+                                        Target pos. {{ challenge.target }} / 20.
+                                        Difficulty {{ challenge.difficulty }} / 10.
+                                </label>
+                            </div>
+                        {% endfor %}
+                    </ul>
+                </div>
+-->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
