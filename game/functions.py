@@ -1,22 +1,45 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 
-from .models import Challenge, Budget
+from .models import (
+    Challenge,
+    Budget,
+    PurposedChallenge
+)
 
 import random
 
 
-def create_challenge_offers(reputation=0):
+def get_or_create_challenge_offers(user):
     '''Creates 3 challenge offers based on user's reputation
 
-        Input: reputation (Integer [0-100])
-        Output: 3 challenges instances (List)
+        Input: user (CustomUser instance)
+        Output: 3 selectable options for radio buttons rendering (List)
     '''
     offers = []
+
+    # Get purposed challenges (if any)
+    purposed_challenges = PurposedChallenge.objects.filter(user=user)
+    if len(purposed_challenges) == 3:
+        for pc in purposed_challenges:
+            offers.append(
+                (
+                    pc.challenge.id,
+                    'Budget: %s € / Target pos.: %s/20 (Difficulty: %s/10)' %(
+                        pc.challenge.budget.season_budget,
+                        pc.challenge.target,
+                        pc.challenge.difficulty
+                    )
+                )
+            )
+        return offers
+
+    # Delete if any and purpose 3 new challenges if they don't exist
+    purposed_challenges.delete()
     for _ in range(3):
-        # Variables
+        # Calculate variables
         target          = 1 + round(16 * random.random())
-        season_budget   = calculate_season_budget(reputation)
-        difficulty      = calculate_difficulty(target, season_budget, reputation)
+        season_budget   = calculate_season_budget(user.reputation)
+        difficulty      = calculate_difficulty(target, season_budget, user.reputation)
 
         # Create instances
         budget = Budget.objects.create(season_budget=season_budget)
@@ -25,11 +48,22 @@ def create_challenge_offers(reputation=0):
             difficulty  = difficulty,
             target      = target
         )
-        offers.append(challenge)
+        purposed_challenge = PurposedChallenge.objects.create(
+            challenge=challenge,
+            user=user
+        )
 
-    # BORRAR LUEGO
-    offers = [('A', 'AA'),('B', 'BB'),('C', 'CC')]
-
+        # Format data
+        offers.append(
+            (
+                challenge.id,
+                'Budget: %s € / Target pos.: %s/20 (Difficulty: %s/10)' %(
+                    challenge.budget.season_budget,
+                    challenge.target,
+                    challenge.difficulty
+                )
+            )
+        )
     return offers
 
 def calculate_difficulty(target, season_budget, reputation):

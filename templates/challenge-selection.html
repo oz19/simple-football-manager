@@ -26,7 +26,11 @@
             </ul>
             <div class="tab-content" id="myTabContent">
                 <!-- Select Challenge -->
-                Select challenge template
+                <form method='post' class='mt-4'>
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type='submit' class='btn btn-dark' value='Select challenge!'/>
+                </form>
 <!--
                 <div class="tab-pane fade show active" id="challenge" role="tabpanel" aria-labelledby="challenge-tab">
                     <ul>
