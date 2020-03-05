@@ -42,7 +42,7 @@ def get_or_create_challenge_offers(user):
         difficulty      = calculate_difficulty(target, season_budget, user.reputation)
 
         # Create instances
-        budget = Budget.objects.create(season_budget=season_budget)
+        budget = Budget.objects.create(season_budget=season_budget) # A signal will fill 'cash'
         challenge = Challenge.objects.create(
             budget      = budget,
             difficulty  = difficulty,
