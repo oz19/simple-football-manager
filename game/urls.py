@@ -6,6 +6,7 @@ from .views import (
     RouterView,
     ChallengeSelectionView,
     PreseasonView,
+    FirstGamesView,
 )
 
 
@@ -29,4 +30,9 @@ urlpatterns = [
         login_required(PreseasonView.as_view()),
         name='preseason'
     ),
+    path(
+        'first-games/',
+        login_required(FirstGamesView.as_view()),
+        name='first-games'
+    )
 ]

@@ -8,6 +8,8 @@ from users.models import CustomUser
 
 
 class Budget(models.Model):
+
+    # Season Budget
     season_budget       = models.IntegerField(
         default     = 0,
         validators  = [
@@ -15,6 +17,8 @@ class Budget(models.Model):
             MaxValueValidator(1000000000)
         ]
     )
+
+    # Remaining cash
     cash                = models.IntegerField(
         default     = 0,
         validators  = [
@@ -22,6 +26,8 @@ class Budget(models.Model):
             MaxValueValidator(1000000000)
         ]
     )
+
+    # Budget items
     players             = models.IntegerField(
         default     = 0,
         validators  = [
@@ -74,6 +80,7 @@ class Budget(models.Model):
 
 
 class Challenge(models.Model):
+
     # Season stages
     PRE_SEASON      = 0
     FIRST_GAMES     = 1

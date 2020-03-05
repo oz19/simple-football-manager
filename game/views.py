@@ -11,7 +11,7 @@ from .forms import (
     ChallengeSelectionForm,
 )
 from .functions import get_or_create_challenge_offers
-from .models import Challenge
+from .models import Challenge, Budget
 
 
 class StartView(TemplateView):
@@ -69,5 +69,11 @@ class ChallengeSelectionView(FormView):
         return super(ChallengeSelectionView, self).form_valid(form)
 
 
-class PreseasonView(TemplateView):
+class PreseasonView(FormView):
     template_name   = 'preseason.html'
+    form_class      = Budget
+    success_url     = reverse_lazy('first-games')
+
+class FirstGamesView(TemplateView):
+    template_name   = 'first-games.html'
+
