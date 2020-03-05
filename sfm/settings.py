@@ -165,3 +165,6 @@ AUTHENTICATION_BACKENDS = {
 # Email
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+# Thousand separators
+USE_THOUSAND_SEPARATOR  = True
+
