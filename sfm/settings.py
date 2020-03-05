@@ -141,8 +141,8 @@ STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'users.CustomUser'
 
 # Allauth (settings from https://django-allauth.readthedocs.io/en/latest/configuration.html)
-LOGIN_REDIRECT_URL                      = 'home'
-ACCOUNT_LOGOUT_REDIRECT_URL             = 'home'
+LOGIN_REDIRECT_URL                      = 'router'
+ACCOUNT_LOGOUT_REDIRECT_URL             = 'account_login'
 ACCOUNT_AUTHENTICATION_METHOD           = 'email'
 ACCOUNT_EMAIL_REQUIRED                  = True
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS  = 14

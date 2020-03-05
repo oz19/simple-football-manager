@@ -1,4 +1,5 @@
 from django.core.exceptions import ObjectDoesNotExist
+from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import (
     TemplateView,
@@ -15,6 +16,13 @@ from .models import Challenge
 
 class StartView(TemplateView):
     template_name = 'start.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        try:
+            challenge = request.user.challenge
+        except Challenge.DoesNotExist:
+            return render(request, 'start.html')
+        return redirect('router')
 
 
 class RouterView(RedirectView):
