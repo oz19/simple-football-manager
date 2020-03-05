@@ -33,10 +33,10 @@
 
                 <!-- Challenge -->
                 <div class="tab-pane fade show active" id="challenge" role="tabpanel" aria-labelledby="challenge-tab">
-                    <p class='mt-4'>Season budget</p>
-                    <p class='mt-4'>Available cash</p>
-                    <p class='mt-4'>Challenge target</p>
-                    <p class='mt-4'>Challenge difficulty</p>
+                    <p class='mt-4'>Season budget: <strong>{{ budget.season_budget }} €</strong></p>
+                    <p class='mt-4'>Available cash: <strong>{{ budget.cash }} €</strong></p>
+                    <p class='mt-4'>Challenge target: <strong>Position {{ budget.challenge.target }}</strong></p>
+                    <p class='mt-4'>Challenge difficulty: <strong>{{ budget.challenge.difficulty }}/10</strong></p>
                 </div>
 
                 <!-- Reputation -->

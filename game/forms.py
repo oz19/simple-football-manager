@@ -1,6 +1,7 @@
 from django import forms
 
 from .functions import get_or_create_challenge_offers
+from .models import Budget
 
 
 class ChallengeSelectionForm(forms.Form):
@@ -16,4 +17,10 @@ class ChallengeSelectionForm(forms.Form):
             widget      = forms.RadioSelect
         )
 
+class PreseasonForm(forms.ModelForm):
 
+    class Meta:
+        model   = Budget
+        fields  = [
+            'players', 'facilities'
+        ]
