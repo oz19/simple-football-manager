@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'crispy_forms',
 
     # Local
     'users.apps.UsersConfig',
@@ -166,5 +167,8 @@ AUTHENTICATION_BACKENDS = {
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Thousand separators
-USE_THOUSAND_SEPARATOR  = True
+USE_THOUSAND_SEPARATOR = True
+
+# Django Crispy Forms
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
