@@ -67,7 +67,35 @@
                 <div class="tab-pane fade" id="budget" role="tabpanel" aria-labelledby="budget-tab">
                     <form method='post' class='mt-4'>
                         {% csrf_token %}
-                        {{ form | crispy }}
+
+                        <div class='form-row'>
+                            <div class='form-group col-md-4'>
+                                {{ form.players | as_crispy_field }}
+                            </div>
+                            <div class='form-group col-md-4'>
+                                {{ form.staff | as_crispy_field }}
+                            </div>
+                            <div class='form-group col-md-4'>
+                                {{ form.bonus | as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class='form-row'>
+                            <div class='form-group col-md-4'>
+                                {{ form.marketing | as_crispy_field }}
+                            </div>
+                            <div class='form-group col-md-4'>
+                                {{ form.team_building | as_crispy_field }}
+                            </div>
+                            <div class='form-group col-md-4'>
+                                {{ form.education | as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class='form-row'>
+                            <div class='form-group col-md-4'>
+                                {{ form.players | as_crispy_field }}
+                            </div>
+                        </div>
+
                         <input type='submit' class='btn btn-dark mt-2' value='Go!' />
                     </form>
                 </div>
