@@ -76,9 +76,26 @@ class PreseasonView(FormView):
     success_url     = reverse_lazy('first-games')
 
     def get_context_data(self, **kwargs):
-        context             = super(PreseasonView, self).get_context_data(**kwargs)
-        context['budget']   = Budget.objects.get(challenge__user=self.request.user)
+        context     = super(PreseasonView, self).get_context_data(**kwargs)
+        challenge   = Challenge.objects.get(user=self.request.user)
+
+        context['season_budget']    = challenge.budget.season_budget
+        context['cash']             = challenge.budget.cash
+        context['target']           = challenge.target
+        context['current_position'] = challenge.current_position
+        context['difficulty']       = challenge.difficulty
+        context['score']            = challenge.score
+
+        context['target_percentage']            = str( int( (20 - challenge.target) * (100/20) ) )
+        context['current_position_percentage']  = str( int( (20 - challenge.current_position) * (100/20) ) )
+        context['current_position_color']       = 'success' if challenge.current_position <= challenge.target else 'danger'
+
+        context['difficulty_percentage']        = str(int(challenge.difficulty * (100/10)))
+        context['score_percentage']             = str(int(challenge.score * (100/10)))
+        context['score_color']                  = 'success' if challenge.score >= challenge.difficulty else 'danger'
+
         return context
+
 
 class FirstGamesView(TemplateView):
     template_name   = 'first-games.html'
