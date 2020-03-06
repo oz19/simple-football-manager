@@ -17,10 +17,16 @@ class ChallengeSelectionForm(forms.Form):
             widget      = forms.RadioSelect
         )
 
-class PreseasonForm(forms.ModelForm):
+class BudgetManagementForm(forms.ModelForm):
 
     class Meta:
         model   = Budget
         fields  = [
-            'players', 'facilities'
+            'players',
+            'staff',
+            'bonus',
+            'marketing',
+            'team_building',
+            'education',
+            'facilities',
         ]

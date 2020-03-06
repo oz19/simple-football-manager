@@ -7,10 +7,7 @@ from django.views.generic import (
     FormView,
 )
 
-from .forms import (
-    ChallengeSelectionForm,
-    PreseasonForm,
-)
+from .forms import ChallengeSelectionForm, BudgetManagementForm
 from .functions import get_or_create_challenge_offers
 from .models import Challenge, Budget
 
@@ -72,7 +69,7 @@ class ChallengeSelectionView(FormView):
 
 class PreseasonView(FormView):
     template_name   = 'preseason.html'
-    form_class      = PreseasonForm
+    form_class      = BudgetManagementForm
     success_url     = reverse_lazy('first-games')
 
     def get_context_data(self, **kwargs):
